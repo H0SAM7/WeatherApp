@@ -41,7 +41,10 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+// ignore: camel_case_types
 class menuBar extends StatelessWidget {
+  const menuBar({super.key});
+
   Future<void> _launchLinkedInProfile() async {
     const url = 'https://www.linkedin.com/in/hosam-adel-65a450284';
     final Uri uri = Uri.parse(url);

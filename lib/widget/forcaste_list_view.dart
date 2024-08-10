@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:weather_app/models/forecast_days_model.dart';
 
+// ignore: camel_case_types
 class forcastListView extends StatelessWidget {
   final Forecast forecast;
  const forcastListView({super.key,required this.forecast});
@@ -19,7 +20,7 @@ class forcastListView extends StatelessWidget {
           SizedBox(
             height: 20,
             width: 80,
-            child: Text('${forecast.day}' ,style: TextStyle( fontFamily: AutofillHints.addressCity, color: Colors.white),)),
+            child: Text(forecast.day ,style: const TextStyle( fontFamily: AutofillHints.addressCity, color: Colors.white),)),
           
           SizedBox(
             height: 20,
@@ -29,12 +30,12 @@ class forcastListView extends StatelessWidget {
           SizedBox(
             height: 20,
             width: 40,
-            child: Text(forecast.mintmp,style: TextStyle( fontFamily: AutofillHints.addressCity, color: Colors.white),)),
+            child: Text(forecast.mintmp,style:const TextStyle( fontFamily: AutofillHints.addressCity, color: Colors.white),)),
 
           SizedBox(
             height: 20,
             width: 50,
-            child: Text(forecast.maxtmp,style: TextStyle( fontFamily: AutofillHints.addressCity, color: Colors.white),)),
+            child: Text(forecast.maxtmp,style:const TextStyle( fontFamily: AutofillHints.addressCity, color: Colors.white),)),
         
         ],),
       ),
@@ -44,14 +45,14 @@ class forcastListView extends StatelessWidget {
  Icon icon(String? degree){
   if(degree == null) return const Icon(Icons.wb_sunny_rounded);
     if (int.parse(degree) <=20.0){
-    return Icon(Icons.snowing,color: Colors.blue,);
+    return const Icon(Icons.snowing,color: Colors.blue,);
     }
     else if(int.parse (degree) >20.0 &&int.parse (degree) <30.0){
-      return Icon(Icons.cloud,color: Colors.lightBlue);
+      return const Icon(Icons.cloud,color: Colors.lightBlue);
     
 }
 else{
-  return Icon(Icons.sunny,color: Colors.amber);
+  return const Icon(Icons.sunny,color: Colors.amber);
 }
 
  }

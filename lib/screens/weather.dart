@@ -9,20 +9,39 @@ import 'package:weather_app/models/weather_model.dart';
 import 'package:weather_app/widget/forcaste_list_view.dart';
 
 class Weather extends StatelessWidget {
-  Weather({super.key, required this.weatherModel});
+  const Weather({super.key, required this.weatherModel});
   final WeatherModel weatherModel;
 
   @override
   Widget build(BuildContext context) {
-    WeatherModel? weatherModel = BlocProvider.of<GetWeatherCubit>(context).weatherModel;
-    final List<Forecast> ls = [
-      Forecast(day: getDayOfWeek(weatherModel?.day2), maxtmp: '${weatherModel?.mintmp2.round()}', mintmp: '${weatherModel?.maxtmp.round()}' + '° C'),
-      Forecast(day: getDayOfWeek(weatherModel?.day3), maxtmp: '${weatherModel?.mintmp3.round()}', mintmp: '${weatherModel?.maxtmp.round()}' + '° C'),
-      Forecast(day: getDayOfWeek(weatherModel?.day4), maxtmp: '${weatherModel?.mintmp4.round()}', mintmp: '${weatherModel?.maxtmp.round()}' + '° C'),
-      Forecast(day: getDayOfWeek(weatherModel?.day5), maxtmp: '${weatherModel?.mintmp5.round()}', mintmp: '${weatherModel?.maxtmp.round()}' + '° C'),
-      Forecast(day: getDayOfWeek(weatherModel?.day6), maxtmp: '${weatherModel?.mintmp6.round()}', mintmp: '${weatherModel?.maxtmp.round()}' + '° C'),
-      Forecast(day: getDayOfWeek(weatherModel?.day7), maxtmp: '${weatherModel?.mintmp7.round()}', mintmp: '${weatherModel?.maxtmp.round()}' + '° C'),
-    ];
+    WeatherModel? weatherModel =
+        BlocProvider.of<GetWeatherCubit>(context).weatherModel;
+    // final List<Forecast> ls = [
+    //   Forecast(
+    //       day: getDayOfWeek(weatherModel?.day2),
+    //       maxtmp: '${weatherModel?.mintmp2.round()}',
+    //       mintmp: '${weatherModel?.maxtmp.round()}' '° C'),
+    //   Forecast(
+    //       day: getDayOfWeek(weatherModel?.day3),
+    //       maxtmp: '${weatherModel?.mintmp3.round()}',
+    //       mintmp: '${weatherModel?.maxtmp.round()}' '° C'),
+    //   Forecast(
+    //       day: getDayOfWeek(weatherModel?.day4),
+    //       maxtmp: '${weatherModel?.mintmp4.round()}',
+    //       mintmp: '${weatherModel?.maxtmp.round()}' '° C'),
+    //   Forecast(
+    //       day: getDayOfWeek(weatherModel?.day5),
+    //       maxtmp: '${weatherModel?.mintmp5.round()}',
+    //       mintmp: '${weatherModel?.maxtmp.round()}' '° C'),
+    //   Forecast(
+    //       day: getDayOfWeek(weatherModel?.day6),
+    //       maxtmp: '${weatherModel?.mintmp6.round()}',
+    //       mintmp: '${weatherModel?.maxtmp.round()}' '° C'),
+    //   Forecast(
+    //       day: getDayOfWeek(weatherModel?.day7),
+    //       maxtmp: '${weatherModel?.mintmp7.round()}',
+    //       mintmp: '${weatherModel?.maxtmp.round()}' '° C'),
+    // ];
 
     return Container(
       width: MediaQuery.of(context).size.width,
@@ -56,15 +75,18 @@ class Weather extends StatelessWidget {
                     width: 250,
                     child: Center(
                       child: Text(
-                        '${weatherModel.cityName}',
-                        style: TextStyle(fontSize: 35, fontFamily: AutofillHints.addressCity, color: Colors.white),
+                        weatherModel.cityName,
+                        style: const TextStyle(
+                            fontSize: 35,
+                            fontFamily: AutofillHints.addressCity,
+                            color: Colors.white),
                       ),
                     ),
                   ),
                   Center(
                     child: Text(
                       'Updated at ${weatherModel.date.hour}:${weatherModel.date.minute}',
-                      style: TextStyle(color: Colors.white),
+                      style: const TextStyle(color: Colors.white),
                     ),
                   ),
                   SizedBox(
@@ -73,11 +95,12 @@ class Weather extends StatelessWidget {
                     child: Center(
                       child: Text(
                         '${weatherModel.temp.round()}° C',
-                        style: TextStyle(fontSize: 45, color: Colors.white),
+                        style:
+                            const TextStyle(fontSize: 45, color: Colors.white),
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 80,
                     width: 600,
                     child: Divider(
@@ -95,51 +118,48 @@ class Weather extends StatelessWidget {
                         Image.network('https:${weatherModel.image}'),
                         Center(
                           child: Text(
-                            '${weatherModel.WeatherCondition}',
-                            style: TextStyle(fontSize: 27, color: Colors.white),
+                            weatherModel.WeatherCondition,
+                            style: const TextStyle(
+                                fontSize: 27, color: Colors.white),
                           ),
                         ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 30),
+                  const SizedBox(height: 30),
                 ],
               ),
             ),
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              (context, index) {
-                return forcastListView(forecast: ls[index]);
-              },
-              childCount: ls.length,
-            ),
-          ),
-          SliverToBoxAdapter(
+          // SliverList(
+          //   delegate: SliverChildBuilderDelegate(
+          //     (context, index) {
+          //       return forcastListView(forecast: ls[index]);
+          //     },
+          //     childCount: ls.length,
+          //   ),
+          // ),
+          const SliverToBoxAdapter(
             child: SizedBox(
               height: 60,
             ),
           ),
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: Divider(
               indent: 40,
               endIndent: 40,
               color: Colors.black,
             ),
           ),
-
-
-          SliverToBoxAdapter(
+          const SliverToBoxAdapter(
             child: SizedBox(
               height: 80,
             ),
           ),
-
-
           SliverToBoxAdapter(
             child: ListView(
               shrinkWrap: true,
-              physics: NeverScrollableScrollPhysics(),
+              physics: const NeverScrollableScrollPhysics(),
               children: [
                 SizedBox(
                   height: 80,
@@ -169,14 +189,16 @@ class Weather extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Icon(Icons.sunny, color: Colors.amber),
-                            Text('UV', style: TextStyle(color: Colors.white)),
-                            Text('${weatherModel.uv.round()}%', style: TextStyle(color: Colors.white)),
+                            const Icon(Icons.sunny, color: Colors.amber),
+                            const Text('UV',
+                                style: TextStyle(color: Colors.white)),
+                            Text('%',
+                                style: const TextStyle(color: Colors.white)),
                           ],
                         ),
                       ),
                       SizedBox(
-                        height:100 ,
+                        height: 100,
                         width: 200,
                         child: Container(
                           height: 90,
@@ -200,26 +222,28 @@ class Weather extends StatelessWidget {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Icon(Icons.sunny_snowing, color: Colors.blue),
-                              Text('Humidity', style: TextStyle(color: Colors.white)),
-                              Text('${weatherModel.humidity}%', style: TextStyle(color: Colors.white)),
+                              const Icon(Icons.sunny_snowing,
+                                  color: Colors.blue),
+                              const Text('Humidity',
+                                  style: TextStyle(color: Colors.white)),
+                              Text('%',
+                                  style: const TextStyle(color: Colors.white)),
                             ],
                           ),
                         ),
                       ),
                     ],
                   ),
-                  
                 ),
-                 SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Divider(
-              indent: 20,
-              endIndent: 20,
-              color: Colors.black,
-            ),
-                SizedBox(
+                const Divider(
+                  indent: 20,
+                  endIndent: 20,
+                  color: Colors.black,
+                ),
+                const SizedBox(
                   height: 20,
                 ),
                 SizedBox(
@@ -250,9 +274,12 @@ class Weather extends StatelessWidget {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Icon(Icons.wind_power_sharp, color: Colors.grey),
-                            Text('Wind', style: TextStyle(color: Colors.white)),
-                            Text('${weatherModel.wind.round()}%', style: TextStyle(color: Colors.white)),
+                            const Icon(Icons.wind_power_sharp,
+                                color: Colors.grey),
+                            const Text('Wind',
+                                style: TextStyle(color: Colors.white)),
+                            Text('%',
+                                style: const TextStyle(color: Colors.white)),
                           ],
                         ),
                       ),
@@ -282,19 +309,28 @@ class Weather extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Icon(Icons.sunny, color: Colors.amber),
-                                  Text('Sunrise', style: TextStyle(color: Colors.white)),
-                                  Text('${weatherModel.sunrise}', style: TextStyle(color: Colors.white)),
+                                  const Icon(Icons.sunny, color: Colors.amber),
+                                  const Text('Sunrise',
+                                      style: TextStyle(color: Colors.white)),
+                                  Text('weatherModel.sunrise,',
+                                      style:
+                                          const TextStyle(color: Colors.white)),
                                 ],
                               ),
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
-                                  Icon(Icons.sunny, color: Color.fromARGB(255, 177, 70, 62)),
-                                  Text('Sunset', style: TextStyle(color: Colors.white)),
-                                  Text('${weatherModel.sunset}', style: TextStyle(color: Colors.white)),
+                                  const Icon(Icons.sunny,
+                                      color: Color.fromARGB(255, 177, 70, 62)),
+                                  const Text('Sunset',
+                                      style: TextStyle(color: Colors.white)),
+                                  Text('weatherModel.sunset',
+                                      style:
+                                          const TextStyle(color: Colors.white)),
                                 ],
                               ),
                             ],
@@ -315,7 +351,15 @@ class Weather extends StatelessWidget {
   String getDayOfWeek(DateTime? date) {
     if (date == null) return 'Today';
     int dayOfWeek = date.weekday;
-    List<String> weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+    List<String> weekdays = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday"
+    ];
     return weekdays[dayOfWeek - 1];
   }
 }

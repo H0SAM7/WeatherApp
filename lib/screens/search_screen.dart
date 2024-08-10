@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/cubit/getWeather/get_weather_cubit.dart';
 
-class searchScreen extends StatelessWidget {
+class SearchScreen extends StatelessWidget {
   
-  const searchScreen({super.key});
+  const SearchScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

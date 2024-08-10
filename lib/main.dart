@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
                         .weatherModel
                         ?.WeatherCondition),
               ),
-              home: home(),
+              home: Home(),
               
               
             

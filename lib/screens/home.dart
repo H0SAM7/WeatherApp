@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:weather_app/cubit/getWeather/get_weather_cubit.dart';
 import 'package:weather_app/cubit/getWeather/weather_states_cubit.dart';
@@ -8,8 +7,8 @@ import 'package:weather_app/screens/search_screen.dart';
 import 'package:weather_app/screens/weather.dart';
 import 'package:weather_app/widget/menu_bar.dart';
 
-class home extends StatelessWidget {
-   home({super.key});
+class Home extends StatelessWidget {
+   const Home({super.key});
  
   @override
   Widget build(BuildContext context) {
@@ -18,9 +17,9 @@ class home extends StatelessWidget {
       drawer: menuBar(),
       appBar: AppBar(
         centerTitle: true,
-        title: Padding(
-          padding: const EdgeInsets.only(left: 15.0),
-          child: Center(child: const Text('Weather App',)),
+        title: const Padding(
+          padding: EdgeInsets.only(left: 15.0),
+          child: Center(child: Text('Weather App',)),
         ),
         
         // iconTheme: const IconThemeData(color: Colors.white),
@@ -34,14 +33,14 @@ class home extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const searchScreen()));
+                        builder: (context) => const SearchScreen()));
               },
               icon: const Icon(Icons.search)),
               IconButton(
               
                 onPressed: (){
                 ThemeData.dark();
-        }, icon: Icon(Icons.dark_mode))
+        }, icon: const Icon(Icons.dark_mode))
         ],
       ),
       body:
@@ -54,7 +53,7 @@ class home extends StatelessWidget {
             return Weather(weatherModel: state.weatherModel,);
           }
           else{
-            return Center(child: Text("OOPS! there was error, please Try again",style: TextStyle(fontSize: 30),));
+            return const Center(child: Text("OOPS! there was error, please Try again",style: TextStyle(fontSize: 30),));
           }
         },
       ),
